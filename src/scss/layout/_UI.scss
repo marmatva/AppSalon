@@ -27,15 +27,9 @@ body{
     .seccion{
         display: none;
         margin-top: $separacion/3;
-        
-        &:first-of-type{
-            display:block;
-
-        }
     }
 }
 
-.clase-de-prueba{
-    margin: 10rem;
-    padding: 5rem;
+.mostrar-seccion{
+    display: block!important;
 }
