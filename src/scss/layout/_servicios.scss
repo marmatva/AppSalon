@@ -9,11 +9,12 @@
         background-color: $blanco;
         padding: $separacion/2;
         border-radius: 1rem;
+        cursor: pointer;
 
         @include tablet{
             margin-bottom: 0;
         }
-        
+
         p{
             margin: 0 0 $separacion/4 0;
         }
@@ -27,6 +28,13 @@
             margin: 0;
             font-size: 2rem;
             font-weight: $bold;
+        }
+
+        &.seleccionado{
+            background-color: $azul;
+            p{
+                color: $blanco;
+            }
         }
     
     }
