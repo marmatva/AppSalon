@@ -177,6 +177,8 @@ function botonesPaginador(){
     } else if (pagina===3){
         paginaAnterior.classList.remove('ocultar'); 
         paginaSiguiente.classList.add('ocultar'); 
+        
+        mostrarResumen();
     } else{
         paginaAnterior.classList.remove('ocultar'); 
         paginaSiguiente.classList.remove('ocultar');
@@ -193,6 +195,11 @@ function mostrarResumen(){
     //Seleccion el resumen
     const resumenDiv = document.querySelector('.contenido-resumen');
 
+    // Limpia HTML Previo
+    while( resumenDiv.firstChild){
+        resumenDiv.removeChild( resumenDiv.firstChild );
+    }
+
     //Validacion de Objeto
     if(Object.values(cita).includes('')){
         const noServicios = document.createElement('P');
@@ -201,6 +208,59 @@ function mostrarResumen(){
         noServicios.classList.add('invalidar-cita');
 
         resumenDiv.appendChild(noServicios);
+
+        return;
+    }
+
+    const headingCita = document.createElement('H3');
+    headingCita.textContent='Resumen de Cita';
+
+    //Mostrar el Resumen
+    const nombreCita = document.createElement('P');
+    nombreCita.innerHTML = `<span>Nombre:</span> ${nombre}`;
+
+    const fechaCita = document.createElement('P');
+    fechaCita.innerHTML = `<span>Fecha:</span> ${fecha}`;
+
+    const horaCita = document.createElement('P');
+    horaCita.innerHTML = `<span>Hora:</span> ${hora}`;
+
+    //Iterar sobre el array de servicios
+
+    const serviciosCita = document.createElement('DIV');
+    serviciosCita.classList.add('resumen-servicios');
+
+    const headingServicios = document.createElement('H3');
+    headingServicios.textContent='Resumen de Servicios';
+
+    serviciosCita.appendChild(headingServicios);
+
+    servicios.forEach( servicio => {
+        const { nombre, precio} = servicio;    
+        const contenedorServicio = document.createElement('DIV');
+        contenedorServicio.classList.add('contenedor-servicio');
+
+        const textoServicio = document.createElement('P');
+        textoServicio.textContent= nombre;
+
+        const precioServicio = document.createElement('P');
+        precioServicio.textContent= precio;
+        precioServicio.classList.add('precio');
+
+        contenedorServicio.appendChild(textoServicio);
+        contenedorServicio.appendChild(precioServicio);
+
+        serviciosCita.appendChild(contenedorServicio);
+
+    } );
+
+    resumenDiv.appendChild(headingCita);
+    resumenDiv.appendChild(nombreCita);
+    resumenDiv.appendChild(fechaCita);
+    resumenDiv.appendChild(horaCita);
+    
+    resumenDiv.appendChild(serviciosCita);
+}
 
 function nombreCita(){
     const nombreInput = document.querySelector('#nombre');
