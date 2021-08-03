@@ -142,8 +142,8 @@ function seleccionarServicio(e){
 }
 
 function eliminarServicio(id){
-    const {servicio} = cita;
-    cita.servicios = servicios.filter (servicio => servicio.id !== id); 
+    const { servicios } = cita;
+    cita.servicios = servicios.filter(servicio => servicio.id !== id); 
 }
 
 function agregarServicio(servicioObj){
