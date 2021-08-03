@@ -115,10 +115,33 @@ function seleccionarServicio(e){
 
     if(elemento.classList.contains('seleccionado')){
         elemento.classList.remove('seleccionado');
+
+        const id = parseInt(elemento.dataset.idServicio);
+
+        eliminarServicio(id);
     } else{
         elemento.classList.add('seleccionado');
+
+        const servicioObj={
+            id: parseInt( elemento.dataset.idServicio ),
+            nombre: elemento.firstElementChild.textContent,
+            precio: elemento.firstElementChild.nextElementSibling.textContent
+        }
+
+        agregarServicio(servicioObj);
     }
 
+}
+
+function eliminarServicio(id){
+    const {servicio} = cita;
+    cita.servicios = servicios.filter (servicio => servicio.id !== id);
+    
+}
+
+function agregarServicio(servicioObj){
+    const { servicios } = cita;
+    cita.servicios=[...servicios, sericioObj];
 }
 
 function paginaSiguiente(){
